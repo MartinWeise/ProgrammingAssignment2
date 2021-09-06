@@ -29,7 +29,7 @@ makeCacheMatrix <- function (x = matrix()) {
   
   list(setMatrix = setMatrix, getMatrix = getMatrix, setInverse = setInverse,
        getInverse = getInverse)
-
+  
 }
 
 
@@ -47,7 +47,7 @@ cacheSolve <- function (x, ...) {
   
   mat <- x$getMatrix()
   
-  inv <- solve(mat) %*% mat
+  inv <- solve(mat, ...)
   
   x$setInverse(inv)
   
@@ -55,24 +55,24 @@ cacheSolve <- function (x, ...) {
   
 }
 
-#A <- matrix(c(5, 1, 0, 
-#              3,-1, 2,
-#              4, 0,-1), nrow=3, byrow=TRUE)
-#B <- makeCacheMatrix(x = A)
-#
-## test getter matrix
-#B$getMatrix()
-#
-## test setter matrix´
-#B$setMatrix(A)
-#B$getMatrix()
-#
-## test getter inverse
-#B$getInverse()
-#
-## test cachesolve inverse
-#cacheSolve(B)
-#B$getInverse()
-#
-## test cache
-#cacheSolve(B)
+A <- matrix(c(5, 1, 0, 
+              3,-1, 2,
+              4, 0,-1), nrow=3, byrow=TRUE)
+B <- makeCacheMatrix(x = A)
+
+# test getter matrix
+B$getMatrix()
+
+# test setter matrix´
+B$setMatrix(A)
+B$getMatrix()
+
+# test getter inverse
+B$getInverse()
+
+# test cachesolve inverse
+cacheSolve(B)
+B$getInverse()
+
+# test cache
+cacheSolve(B)
